@@ -1,12 +1,10 @@
-# README
-
 ## Pre-check
 
 - For bugs, do a quick search and make sure the bug has not yet been reported
 
 I searched both the devise and rails issues and found potentially related issues:
-https://github.com/heartcombo/devise/issues/5436
-https://github.com/rails/rails/pull/45033
+- https://github.com/heartcombo/devise/issues/5436
+- https://github.com/rails/rails/pull/45033
 
 However, this issue seems to have a different root cause than those so I decided to report it.
 
@@ -20,13 +18,15 @@ However, this issue seems to have a different root cause than those so I decided
 
 1. Create a new rails application:
 `rails new test_app`
+`cd test_app`
 2. Add devise gem
 `bundle add devise -v 4.9.4`
 3. Install devise
-`rails generate devise install`
+`rails generate devise:install`
 4. Generate a devise model with extra attributes name and original_name
 `rails generate devise customers name:string original_name:string`
 5. Add ActiveRecord Encryption configuration for name field to use deterministic encryption and to ignore case
+`app/models/customer.rb`
 `encrypts :name, deterministic: true, ignore_case: true`
 6. Attempt to create the database
 `bin/rails db:create`
@@ -61,9 +61,9 @@ Created database 'storage/test.sqlite3'
 I've prepared a sample application here:
 
 It has three branches:
-- main: new vanilla rails install
-- devise-encrypts: devise is installed and encryption configured
-- scaffold used to create model and encryption configured
+- **main**: new vanilla rails install
+- **devise-encrypts**: devise is installed and encryption configured
+- **scaffold-encrypts**: scaffold used to create model and encryption configured
 
 Something to note is that if you remove `ignore_case: true` the database is created.
 
