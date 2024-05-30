@@ -23,5 +23,8 @@ module DeviseArEncrypts
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    ### UNCOMMENT THIS LINE TO ENABLE WORKAROUND: https://github.com/rails/rails/pull/45033 ###
+    # config.active_record.encryption.support_unencrypted_data = true
   end
 end
